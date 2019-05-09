@@ -1,0 +1,46 @@
+﻿@page
+@model Dynasent.Pages.Bus.InsertModel
+@{
+}
+
+<h1>Insert Page</h1>
+<div>
+    <a href="@Url.Page("./Index")" class="btn btn-primary">View All Bus</a>
+</div>
+<div>
+    <form method="post">
+        <h4>Driver Form</h4>
+        <div>
+            <label asp-for="FormDriver.DriverName"></label>
+            <input asp-for="FormDriver.DriverName" />
+            <span asp-validation-for="FormDriver.DriverName"></span>
+        </div>
+        <div>
+            <label asp-for="FormDriver.DriverPhoneNumber"></label>
+            <input asp-for="FormDriver.DriverPhoneNumber" />
+            <span asp-validation-for="FormDriver.DriverPhoneNumber"></span>
+        </div>
+
+        <h4>Bus Form</h4>
+        <div>
+            <label asp-for="Form.BusName"></label>
+            <input asp-for="Form.BusName" />
+            <span asp-validation-for="Form.BusName"></span>
+        </div>
+        <div>
+            <label asp-for="Form.BusNumber"></label>
+            <input asp-for="Form.BusNumber" />
+            <span asp-validation-for="Form.BusNumber"></span>
+        </div>
+        <div>
+            <label asp-for="Form.BusType"></label>
+            <input asp-for="Form.BusType" />
+            <span asp-validation-for="Form.BusType"></span>
+        </div>
+
+        <div>
+            <button type="submit">Insert</button>
+        </div>
+
+    </form>
+</div>

@@ -1,0 +1,38 @@
+﻿@page
+@model Dynasent.Pages.Passanger.InsertModel
+@{
+}
+
+<h1>Insert Page</h1>
+<div>
+    <a href="~/Bus/Index" class="btn btn-primary">View All Bus</a>
+    <br />
+</div>
+<div>
+    <br />
+    <form method="post">
+        <div>
+            <label asp-for="Form.PassangerName"></label>
+            <input asp-for="Form.PassangerName" />
+            <span asp-validation-for="Form.PassangerName"></span>
+        </div>
+        <div>
+            <label asp-for="Form.PassangerContact"></label>
+            <input asp-for="Form.PassangerContact" />
+            <span asp-validation-for="Form.PassangerContact"></span>
+        </div>
+        <div>
+            <label>Bus Name</label>
+            <select asp-for="Form.BusId">
+                @foreach (var bus in @Model.Bus)
+                {
+                    <option value="@bus.BusId">@bus.BusName</option>
+                }
+            </select>
+        </div>
+        <div>
+            <button type="submit">Insert</button>
+        </div>
+
+    </form>
+</div>

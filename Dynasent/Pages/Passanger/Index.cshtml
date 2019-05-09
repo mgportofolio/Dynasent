@@ -1,0 +1,98 @@
+﻿@page
+@model Dynasent.Pages.Passanger.IndexModel
+@{
+}
+
+<div class="container">
+    <h2>All Passangers</h2>
+    <a href="@Url.Page("./Insert")" class="btn btn-primary">Insert</a>
+    <br />
+    <br />
+    <div class="row">
+        <br />
+
+        @foreach (var passanger in Model.Passangers)
+        {
+                   
+            <br />
+            <div class="col-md-3" style="margin-bottom:3%">
+
+                <div class="card">
+
+                    <!--button-->
+                    <a href="" class="close" data-toggle="modal" aria-label="close" data-target="#confirmationModal_@(passanger.PassangerId)">
+                        <span aria-hidden="true">&times;</span>
+                    </a>
+                    <div class="modal fade" id="confirmationModal_@(passanger.PassangerId)" role="dialog" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Delete @passanger.PassangerName From Passangers?</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    Are you sure want to delete Passanger : @(passanger.PassangerId) @passanger.PassangerName ?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <a href="~/Passanger/Delete/@passanger.PassangerId" type="button" class="btn btn-primary">Delete</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <img class="card-img-top" src="@passanger.QrCodeSrc" alt="Card image">
+                    <div class="card-body">
+                        <h4 class="card-title">@passanger.PassangerName</h4>
+                        <p class="card-text">
+                            Id          :   @passanger.PassangerId
+                            <br />
+                            Bus         :   @Model.BusName(passanger.BusId)
+                            <br />
+                            Status      :
+                            @if (passanger.InOrOut)
+                            {
+                                @*<h4>In</h4>*@
+                                <span class="badge badge-success">
+                                    <a href="~/Passanger/Process/@passanger.PassangerId"
+                                       class="text-white">Inside</a>
+                                </span>
+                            } @*<h4>Out</h4>*@
+                            @if (!passanger.InOrOut)
+                            {
+                                <span class="badge badge-danger">
+                                    <a href="~/Passanger/Process/@passanger.PassangerId"
+                                       class="text-white">Outside</a>
+                                </span>
+                            }
+                            <br />
+                            Contact     :   @passanger.PassangerContact
+                            <br />
+                            @passanger.TimeStamp
+                        </p>
+
+                        <p>Download:</p>
+                        <div class="text-center">
+                            <a href="@passanger.QrCodeSrc" download="@(passanger.PassangerName+".png")" class="btn btn-primary">QR Code</a>
+                        </div>
+
+                        <!-- Modal -->
+
+                    </div>
+                    <a href="@Url.Page("./Insert")" class="btn btn-primary">
+                        Update 
+                    </a>
+
+                </div>
+            </div>
+
+        }
+
+    </div>
+
+</div>
+
+
+
