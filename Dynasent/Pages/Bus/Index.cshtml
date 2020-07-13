@@ -1,0 +1,70 @@
+﻿@page
+@model Dynasent.Pages.Bus.IndexModel
+@{
+}
+
+<div class="container">
+    <h2>Passangers</h2>
+    <a href="~/Bus/Insert" class="btn btn-primary">Insert</a>
+    <br />
+    <br />
+    <div class="row">
+        <br />
+
+        @foreach (var bus in Model.Bus)
+        {
+
+            <br />
+            <div class="col-md-3" style="margin-bottom:3%">
+
+                <div class="card">
+
+                    <div class="card-body">
+                        <h4 class="card-title">@bus.BusNumber</h4>
+                        <p class="card-text">
+                            Id          :   @bus.BusId
+                            <br />
+                            Name        :   @bus.BusName
+                            <br />
+                            Type        :   @bus.BusType
+                            <br />
+                            Status      :
+                            @if (bus.IsEnd)
+                            {
+                                @*<h4>In</h4>*@
+                                <span class="badge badge-danger">
+                                    End
+                                </span>
+                            } @*<h4>Out</h4>*@
+                            @if (!bus.IsEnd)
+                            {
+                                <span class="badge badge-success">
+                                    Not End
+                                </span>
+                            }
+                            <br />
+                            Driver Name :   @(await Model.GetDriverName(bus.DriversId))
+                            <br />
+                            Contact     :    @(await Model.GetDriverNumber(bus.DriversId))
+                            <br />
+                            Total Passanger :
+                            <span class="badge badge-primary">
+                                @(await Model.CountPassangerAsync(bus.BusId))
+                            </span>
+                            <br />
+                            @bus.StartTimeStamp
+                        </p>
+
+                        <div class="text-center">
+                            <a href="~/Bus/View/@bus.BusId" class="btn btn-primary">View</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        }
+
+    </div>
+
+</div>
