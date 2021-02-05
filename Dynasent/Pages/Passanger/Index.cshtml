@@ -5,7 +5,7 @@
 
 <div class="container">
     <h2>All Passangers</h2>
-    <a href="@Url.Page("./Insert")" class="btn btn-primary">Insert</a>
+    @*<a href="@Url.Page("./Insert")" class="btn btn-primary">Insert</a>*@
     <br />
     <br />
     <div class="row">
@@ -74,8 +74,8 @@
                         </p>
 
                         <p>Download:</p>
-                        <div class="text-center">
-                            <a href="@passanger.QrCodeSrc" download="@(passanger.PassangerName+".png")" class="btn btn-primary">QR Code</a>
+                        <div class="text-center form-group m-2">
+                            <Button href="@passanger.QrCodeSrc" download="@(passanger.PassangerName+".png")" class="form-control btn btn-primary">QR Code</Button>
                         </div>
 
                         <!-- Modal -->

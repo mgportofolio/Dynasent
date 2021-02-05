@@ -1,48 +1,54 @@
-﻿@page "{Form.BusId:int}"
+﻿@page "{BusId:int}"
 @model Dynasent.Pages.Bus.ViewModel
 @{
 }
 
 <div class="container">
-    <h2>Passangers</h2>
-    <a href="~/Passanger/Insert" class="btn btn-primary">Insert</a>
+    <h2>Bus</h2>
+    <span>
+        <a href="~/Passanger/Insert/@Model.Property.BusInfo.BusId" class="btn btn-primary">Add Passanger</a>
+        <a href="~/Bus/" class=btn btn-primary">Back to List of Bus</a>
+    </span>
     <br />
     <br />
     <div class="row">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <h3 class="card-title">@Model.BusInfo.BusNumber</h3>
+                    <h3 class="card-title">@Model.Property.BusInfo.BusNumber</h3>
                     <div class="row">
                         <div class="col-md-4 mt-2 mb-1">
                             <h5 class="card-title">Bus Information</h5>
                             <p class="card-text">
-                                Name    :   @(Model.BusInfo.BusName)
+                                Name    &nbsp;&nbsp;:&nbsp;@(Model.Property.BusInfo.BusName)
                                 <br />
-                                Type    :   @(Model.BusInfo.BusType)
+                                Type    &nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;@(Model.Property.BusInfo.BusType)
                             </p>
                         </div>
 
                         <div class="col-md-4 mt-2 mb-1">
                             <h5 class="card-title">Driver</h5>
                             <p class="card-text">
-                                Driver  :   @(Model.Drivers.DriverName)
+                                Driver  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :   @(Model.Property.Drivers.DriverName)
                                 <br />
-                                Contact :   @(Model.Drivers.DriverPhoneNumber)
+                                Contact &nbsp;&nbsp;&nbsp;:   @(Model.Property.Drivers.DriverPhoneNumber)
                             </p>
                         </div>
 
                         <div class="col-md-4 mt-2 mb-1">
                             <h5 class="card-title">
-                                Passangers 
+                                Passangers
                                 <span class="badge badge-primary">
-                                    @Model.Passangers.Count() People
+                                    @Model.Property.Passangers.Count() People
                                 </span>
                             </h5>
                             <p class="card-text">
-                                Inside  :   @(Model.Drivers.DriverName)
+                                Inside &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;
+
+                                <span class="badge badge-success">@(Model.Property.CountIn) People</span>
+
                                 <br />
-                                Outside :   @(Model.Drivers.DriverPhoneNumber)
+                                Outside &nbsp;&nbsp;:&nbsp;   <span class="badge badge-danger">@(Model.Property.CountOut) People</span>
                             </p>
                         </div>
                     </div>
@@ -54,8 +60,8 @@
     <br />
     <div class="row">
         <br />
-        
-        @foreach (var passanger in Model.Passangers)
+
+        @foreach (var passanger in Model.Property.Passangers)
         {
 
             <br />

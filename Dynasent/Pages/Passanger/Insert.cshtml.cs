@@ -25,19 +25,35 @@ namespace Dynasent.Pages.Passanger
         public PassangerViewModel Form { set; get; }
         [BindProperty(SupportsGet = true)]
         public List<BusViewModel> Bus { set; get; }
-        
+       
+        [BindProperty(SupportsGet = true)]
+        public int BusId { set; get; }
+
+        [BindProperty(SupportsGet = true)]
+        public BusViewModel BusViewModel { set; get; }
+
+
         public async Task OnGetAsync()
         {
             Bus = await _BusMan.GetDataBus();
+            BusId = Form.BusId;
+            BusViewModel = await _BusMan.GetBusViewModels(BusId);
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
+
+
+            //Form = await _PassangerMan.GetPassangerById(BusId);
+            Bus = await _BusMan.GetDataBus();
+            BusId = Form.BusId;
+
+
             await _PassangerMan.InsertPassanger(new PassangerViewModel
             {
                 PassangerName = Form.PassangerName,
                 PassangerContact = Form.PassangerContact,
-                BusId = Form.BusId,
+                BusId = BusId,
                 QrCodeSrc = "DEFAULT"
             });
 
@@ -51,9 +67,8 @@ namespace Dynasent.Pages.Passanger
             await _PassangerMan.InsertQrSrc(passangerId, await
                 _PassangerMan.GenerateQrCode(passangerData.ToString()));
 
-            Bus = await _BusMan.GetDataBus();
 
-            return RedirectToPage("./Index");
+            return Redirect("~/Bus/View/"+BusId);
         }
     }
 }

@@ -29,9 +29,11 @@ namespace Dynasent.Pages.Passanger
                 return NotFound();
             }
 
+            var busId = Form.BusId;
+
             await _PassangerMan.DeletePassanger(Form.PassangerId);
 
-            return RedirectToPage("./Index");
+            return Redirect("~/Bus/View/"+busId);
         }
     }
 }

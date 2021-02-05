@@ -1,38 +1,36 @@
-﻿@page
+﻿@page "{Form.BusId:int}"
 @model Dynasent.Pages.Passanger.InsertModel
 @{
 }
 
-<h1>Insert Page</h1>
-<div>
-    <a href="~/Bus/Index" class="btn btn-primary">View All Bus</a>
-    <br />
-</div>
-<div>
-    <br />
-    <form method="post">
-        <div>
-            <label asp-for="Form.PassangerName"></label>
-            <input asp-for="Form.PassangerName" />
-            <span asp-validation-for="Form.PassangerName"></span>
-        </div>
-        <div>
-            <label asp-for="Form.PassangerContact"></label>
-            <input asp-for="Form.PassangerContact" />
-            <span asp-validation-for="Form.PassangerContact"></span>
-        </div>
-        <div>
-            <label>Bus Name</label>
-            <select asp-for="Form.BusId">
-                @foreach (var bus in @Model.Bus)
-                {
-                    <option value="@bus.BusId">@bus.BusName</option>
-                }
-            </select>
-        </div>
-        <div>
-            <button type="submit">Insert</button>
-        </div>
+<div class="card p-2">
+    <div class="text-center">
+        <h3 class="m-4">Add Passanger To The Bus</h3>
+        <br />
+    </div>
+    <div class="card-body">
+        <a href="~/Bus/Index" class="btn btn-secondary m-2">View All Bus</a>
+        <br />
+        <form method="post" class="form-group m-2">
+            <div>
+                <label class="font-weight-bold text-left" asp-for="Form.PassangerName"></label>
+                <input class="form-control" asp-for="Form.PassangerName" />
+                <span asp-validation-for="Form.PassangerName"></span>
+            </div>
+            <div>
+                <label class="font-weight-bold text-left" asp-for="Form.PassangerContact"></label>
+                <input class="form-control" asp-for="Form.PassangerContact" />
+                <span asp-validation-for="Form.PassangerContact"></span>
+            </div>
+            <div>
+                <br />
+                <label class=" font-weight-bold text-left">Bus Name</label> <span class="badge badge-primary"><a href="~/Bus/View/@Model.BusViewModel.BusId" class="text-white">@Model.BusViewModel.BusName</a></span>
+            </div>
+            <div>
+                <br />
+                <button class="btn btn-primary form-control" type="submit">Add Passanger</button>
+            </div>
 
-    </form>
+        </form>
+    </div>
 </div>
